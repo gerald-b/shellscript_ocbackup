@@ -8,6 +8,10 @@ BACKUPDEST=/some/path
 
 # Enter your credentials here
 HTTPUSER=florian
+# you COULD store your password in plaintext here but that would be stupid
+# try my small python script to use your OS's encrypted keyring instead
+# (tested with GNOME-Keyring)
+# https://github.com/fheinle/mutt/blob/master/scripts/kr.py
 HTTPPASS=`/home/florian/.mutt/scripts/kr.py get florian@owncloud`
 HTTPHOST=https://your-owncloud/installation/
 CONTACTS_IDS=2
