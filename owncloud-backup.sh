@@ -24,7 +24,7 @@ do
     wget --auth-no-challenge --no-clobber \
         --http-user=$HTTPUSER --http-password=$HTTPPASS \
         -O $CONTACTSFILE \
-        "$HTTPHOST/?app=contacts&getfile=export.php?bookid=$CONTACTS_ID"
+        "$HTTPHOST/index.php/apps/contacts/addressbook/local/$CONTACTS_ID/export"
     gzip $CONTACTSFILE
 done
 
@@ -34,6 +34,6 @@ do
     wget --auth-no-challenge --no-clobber \
         --http-user=$HTTPUSER --http-password=$HTTPPASS \
         -O $CALENDARFILE \
-        "$HTTPHOST/?app=calendar&getfile=export.php?calid=$CALENDAR_ID"
+        "$HTTPHOST/index.php/apps/calendar/export.php?calid=$CALENDAR_ID"
     gzip $CALENDARFILE
 done
