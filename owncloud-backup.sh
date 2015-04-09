@@ -14,17 +14,17 @@ HTTPUSER=florian
 # https://github.com/fheinle/mutt/blob/master/scripts/kr.py
 HTTPPASS=`/home/florian/.mutt/scripts/kr.py get florian@owncloud`
 HTTPHOST=https://your-owncloud/installation/
-CONTACTS_IDS=2
+ADDRESS_BOOKS="kontakte"
 CALENDAR_IDS="4 6"
 
-for CONTACTS_ID in `echo $CONTACTS_IDS`;
+for ADDRESS_BOOK in `echo $ADDRESS_BOOKS`;
 do
 
-    CONTACTSFILE=$BACKUPDEST/contacts_$CONTACTS_ID-$DATE.vcf
+    CONTACTSFILE=$BACKUPDEST/contacts_$ADDRESS_BOOK-$DATE.vcf
     wget --auth-no-challenge --no-clobber \
         --http-user=$HTTPUSER --http-password=$HTTPPASS \
         -O $CONTACTSFILE \
-        "$HTTPHOST/index.php/apps/contacts/addressbook/local/$CONTACTS_ID/export"
+        "$HTTPHOST/remote.php/carddav/addressbooks/$HTTPUSER/$ADDRESS_BOOK?export"
     gzip $CONTACTSFILE
 done
 
